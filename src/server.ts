@@ -12,12 +12,24 @@ server.on('connection', function(socket:net.Socket){
 
     // when data is sent to the socket
     socket.on('data', function(data){
-        //
+        
+          //process data
+   var echo = data.toString().toUpperCase();
+
+   if(echo === 'EXIT') {
+      socket.write("Goodbye!");
+      socket.end();
+   }
+   else {
+      socket.write("Did you say '"+echo+"'?");
+   }
+
     });
 
     socket.on('close', function(){
         // handle client disconnecting
     })
+
 
 
 });
